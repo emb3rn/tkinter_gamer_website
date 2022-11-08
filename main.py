@@ -2,7 +2,7 @@ import tkinter as tk
 
 window = tk.Tk("Website", None)
 window.configure(background="white")
-window.geometry("1000x800")
+window.geometry("1000x900")
 
 class colors:
     background = "#ECECEC"
@@ -28,61 +28,69 @@ l_desc     = tk.Label(main_frame,
                   wraplength=650,
                   justify=tk.LEFT).place(x=100, y=150)
 
-n_offsets = {
-    "x": -20,
-    "y": -20
-}
+#NAME INPUT
 
-f_first_name = tk.LabelFrame(main_frame,
-                             width=200,
-                             height=40,
-                             bg=colors.background,
-                             highlightbackground="black",
-                             highlightthickness=1,
-                             border=0).place(x=100, y=250)
+name_text = ["First name", "Last name"]
 
-l_first_name = tk.Label(f_first_name,
-                        text="First Name",
+for name in range(0,2):
+    frame = tk.LabelFrame(main_frame,
+                            width=200,
+                            height=40,
+                            bg=colors.background,
+                            highlightbackground="black",
+                            highlightthickness=1,
+                            border=0).place(x=100, y=250+name*50)
+
+    name = tk.Label(frame,
+                        text=name_text[name],
                         fg="black",
                         bg=colors.background,
-                        font=("Arial Regular", 12)).place(x=105, y=255)
+                        font=("Arial Regular", 12)).place(x=105, y=255+name*50)    
 
-f_last_name = tk.LabelFrame(main_frame,
-                             width=200,
-                             height=40,
-                             bg=colors.background,
-                             highlightbackground="black",
-                             highlightthickness=1,
-                             border=0).place(x=100, y=300)
-
-l_last_name = tk.Label(f_first_name,
-                        text="Last Name",
-                        fg="black",
-                        bg=colors.background,
-                        font=("Arial Regular", 12)).place(x=105, y=305)
-
-e_first_name = tk.Entry(main_frame,
+#ENTRY BOXES
+for entry in range(0, 2):
+    entry = tk.Entry(main_frame,
                         font=("Arial Regular", 24),
                         width=20,
                         highlightbackground="black",
                         highlightthickness=1,
-                        border=0).place(x=305, y=250)
+                        border=0).place(x=305, y=250+entry*50)
 
-e_last_name = tk.Entry(main_frame,
-                        font=("Arial Regular", 24),
-                        width=20,
-                        highlightbackground="black",
-                        highlightthickness=1,
-                        border=0).place(x=305, y=300)
+#GENDER SELECTION
+l_gender = tk.Label(text="Gender?",
+                    font=("Arial Regular", 14),
+                    bg=colors.background).place(x=95, y=375)
 
+rb_options = ["Male", "Female", "Prefer not to say"]
+
+for option in range(0,3):
+    radio_button = tk.Radiobutton(text=f"  {rb_options[option]}",
+                            font=("Arial Regular", 14),
+                            bg=colors.background)
+    radio_button.place(x=95, y=(420+option*40))
+ 
+
+#KIND OF GAMES
+l_games_play = tk.Label(text="Which games do you like to play?",
+                    font=("Arial Regular", 14),
+                    bg=colors.background).place(x=500, y=375)
+
+cb_names = ["Quizzes", "Cards", "Dice", "Other"]
+
+for name in range(0,4):
+    checkbox = tk.Checkbutton(text=cb_names[name],
+                            font=("Arial Regular", 14),
+                            bg=colors.background)
+    checkbox.place(x=500, y=(415 + name*40))
+
+#QUIT/SUBMIT BUTTONS
 b_quit = tk.Button(main_frame,
                    text="QUIT",
                    font=("Arial Regular", 10),
                    height=2,
                    width=12,
                    highlightbackground="#000000",
-                   highlightthickness=5,
-                   border=0).place(x=650, y=650)
+                   highlightthickness=5).place(x=650, y=750)
 
 b_submit = tk.Button(main_frame,
                    text="SUBMIT",
@@ -90,9 +98,6 @@ b_submit = tk.Button(main_frame,
                    height=2,
                    width=12,
                    highlightbackground="black",
-                   highlightthickness=5,
-                   border=0).place(x=775, y=650)
-
-
+                   highlightthickness=5).place(x=775, y=750)
 
 window.mainloop()
